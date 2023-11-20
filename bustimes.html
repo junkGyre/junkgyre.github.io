@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation Information</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #header {
+            width: 380px;
+            background-color: #12223b;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            order: 1;
+        }
+
+        #timer {
+	    color: white;
+	    font-size: 70px; /* Adjust the font size as needed */
+	    font-weight: bold;
+	}
+	
+	#timer2 {
+	    color: white;
+	    font-size: 24px; /* Adjust the font size as needed */
+	    font-weight: bold;
+	}
+
+        #content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            order: 2;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+            width: 380px;
+            background-color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .column {
+            flex: 1;
+            padding: 10px;
+        }
+
+        #expires {
+            color: red;
+        }
+        
+        #expiry-date {
+            color: red;
+        }
+        
+        #expiry-time {
+            color: red;
+        }
+
+        #time {
+            color: black;
+        }
+
+        #busImage {
+            width: 380px;
+            margin-top: 0px;
+        }
+        
+        #topBus {
+            width: 380px;
+            margin-top: 0px;
+            border: none;
+        }
+    </style>
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var countdown = 5400; // in seconds
+            var display = document.querySelector('#timer');
+            startTimer(countdown, display);
+        };
+    </script>
+</head>
+<body>
+    <img id="topBus" src="topbus.gif" alt="Bus Image2">
+    <div id="header">
+        <div id="timer"></div>
+        <div id="timer2">ONE-WAY<BR />Local, Adult</div>
+    </div>
+
+    <div id="content-container">
+        <div id="container">
+            <div class="column">
+                <div id="activated">Activated</div>
+                <div id="date"></div>
+                <div id="time"></div>
+            </div>
+            <div class="column">
+                <div id="expires">Expires</div>
+                <div id="expiry-date"></div>
+                <div id="expiry-time"></div>
+            </div>
+        </div>
+
+        <!-- Image directly under the container -->
+        <img id="busImage" src="busBottom.gif" alt="Bus Image">
+    </div>
+    <script>
+        function formatDate(date) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Intl.DateTimeFormat('en-US', options).format(date);
+        }
+
+        function formatTime(date) {
+            const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+            return new Intl.DateTimeFormat('en-US', options).format(date);
+        }
+
+        document.getElementById('date').innerText = formatDate(new Date());
+        document.getElementById('time').innerText = formatTime(new Date());
+
+        const expiryDateTime = new Date();
+        expiryDateTime.setHours(expiryDateTime.getHours() + 1);
+        expiryDateTime.setMinutes(expiryDateTime.getMinutes() + 45);
+
+        document.getElementById('expiry-date').innerText = formatDate(expiryDateTime);
+        document.getElementById('expiry-time').innerText = formatTime(expiryDateTime);
+    </script>
+</body>
+</html>
+
