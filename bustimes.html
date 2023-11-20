@@ -112,9 +112,24 @@
             var display = document.querySelector('#timer');
             startTimer(countdown, display);
         };
+        function decode(encodedString) {
+            return atob(encodedString);
+        }
+
+        function checkPassword() {
+            var encodedPassword = "MTIyMzMzNDQ0NA==";
+            var enteredPassword = prompt("Enter the password:");
+
+            if (enteredPassword === decode(encodedPassword)) {
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Incorrect password. Access denied.");
+            }
+        }
     </script>
 </head>
-<body>
+<body onload="checkPassword()">
+    <div id="content" style="display: none;">
     <img id="topBus" src="topbus.gif" alt="Bus Image2">
     <div id="header">
         <div id="timer"></div>
@@ -159,6 +174,7 @@
         document.getElementById('expiry-date').innerText = formatDate(expiryDateTime);
         document.getElementById('expiry-time').innerText = formatTime(expiryDateTime);
     </script>
+    </div>
 </body>
 </html>
 
