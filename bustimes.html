@@ -88,6 +88,16 @@
         }
     </style>
     <script>
+	function checkPassword() {
+            var encodedPassword = "MTIyMzMzNDQ0NA==";
+            var enteredPassword = prompt("Enter the password:");
+
+            if (enteredPassword === decode(encodedPassword)) {
+                document.getElementById("content").style.display = "block";
+            } else {
+                alert("Incorrect password. Access denied.");
+            }
+        }
         function startTimer(duration, display) {
             var timer = duration, hours, minutes, seconds;
             setInterval(function () {
@@ -114,17 +124,6 @@
         };
         function decode(encodedString) {
             return atob(encodedString);
-        }
-
-        function checkPassword() {
-            var encodedPassword = "MTIyMzMzNDQ0NA==";
-            var enteredPassword = prompt("Enter the password:");
-
-            if (enteredPassword === decode(encodedPassword)) {
-                document.getElementById("content").style.display = "block";
-            } else {
-                alert("Incorrect password. Access denied.");
-            }
         }
     </script>
 </head>
