@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activation Information</title>
     <style>
         body {
@@ -83,21 +83,11 @@
         
         #topBus {
             width: 380px;
-            margin-top: 40px;
+            margin-top: 0px;
             border: none;
         }
     </style>
     <script>
-	function checkPassword() {
-            var encodedPassword = "MTIyMzMzNDQ0NA==";
-            var enteredPassword = prompt("Enter the password:");
-
-            if (enteredPassword === decode(encodedPassword)) {
-                document.getElementById("content").style.display = "block";
-            } else {
-                alert("Incorrect password. Access denied.");
-            }
-        }
         function startTimer(duration, display) {
             var timer = duration, hours, minutes, seconds;
             setInterval(function () {
@@ -122,13 +112,9 @@
             var display = document.querySelector('#timer');
             startTimer(countdown, display);
         };
-        function decode(encodedString) {
-            return atob(encodedString);
-        }
     </script>
 </head>
-<body onload="checkPassword()">
-    <div id="content" style="display: none;">
+<body>
     <img id="topBus" src="topbus.gif" alt="Bus Image2">
     <div id="header">
         <div id="timer"></div>
@@ -173,7 +159,5 @@
         document.getElementById('expiry-date').innerText = formatDate(expiryDateTime);
         document.getElementById('expiry-time').innerText = formatTime(expiryDateTime);
     </script>
-    </div>
 </body>
 </html>
-
